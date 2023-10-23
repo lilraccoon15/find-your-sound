@@ -3,12 +3,21 @@ const Homepage = () => {
     return(
         <>
             <article className="flex flex-col items-center">
-                <h1 className="font-bold text-[5rem]">RECOTIFY</h1>
-                <p className="italic font-light">Dis-nous ce que tu aimes et on te dira quoi écouter</p>
-                <h2 className="font-extrabold text-[9rem] text-purple -translate-x-32">Etape 1</h2>
-                <h2 className="font-extrabold text-[9rem] text-purple -translate-x-32">Etape 2</h2>
-                <h2 className="font-extrabold text-[9rem] text-purple -translate-x-32">Etape 3</h2>
-                <button className="bg-spotify rounded-[36px] text-purple-dark p-4 font-bold" >Se connecter</button>
+                <h1 className="font-black text-[5rem]">RECOTIFY</h1>
+                <p className="italic font-light my-8 text-3xl">Dis-nous ce que tu aimes et on te dira quoi écouter</p>
+                <div className="my-6">
+                    <h2 className="font-extrabold text-[7rem] text-purple -translate-x-32">Etape 1</h2>
+                    <p className="text-[2rem] mt-12 w-[33rem] font-bold">Connectes ton compte Spotify</p>
+                </div>
+                <div className="my-6">
+                    <h2 className="font-extrabold text-[7rem] text-purple -translate-x-32">Etape 2</h2>
+                    <p className="text-[2rem] mt-12 w-[33rem] font-bold">Dis-nous quels sont tes genres et artistes préférés</p>
+                </div>
+                <div className="my-6">
+                    <h2 className="font-extrabold text-[7rem] text-purple -translate-x-32">Etape 3</h2>
+                    <p className="text-[2rem] mt-12 w-[33rem] font-bold">Découvres nos recommandations</p>
+                </div>
+                <button className="bg-spotify rounded-[36px] my-32 text-purple-dark py-4 px-16 text-2xl font-bold active:bg-purple active:text-white border border-spotify" >Se connecter</button>
             </article>
         </>
     )
