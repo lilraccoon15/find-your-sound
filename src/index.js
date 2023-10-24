@@ -6,6 +6,7 @@ import Homepage from './components/Homepage';
 import Profile from './components/Profile';
 import Recommendations from './components/Recommendations';
 import Login from './components/Login';
+import Settings from './components/Settings';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path:"/login",
         element: <Login />
+      },
+      {
+        path:"/settings",
+        element: <Settings />
       }
     ]
 
