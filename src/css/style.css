@@ -8,4 +8,8 @@
     @apply bg-purple-dark text-white;
     font-family: 'Manrope', sans-serif;
   }
+
+  a.active {
+    text-decoration: underline;
+  }
 }
