@@ -13,8 +13,6 @@ const Login = () => {
         +'&scope=' + encodeURIComponent('user-read-private user-read-email')
         +'&redirect_uri=' + encodeURIComponent('http://localhost:3000/login')
         +'&state=' + encodeURIComponent('JBNDzndqnzIUDfNZDbfez5qe4648');
-        // dispatch(login(data.display_name, data.email, data.image, accessToken)
-    console.log(data);
     useEffect(() => {
         if (accessToken){
       fetch('https://api.spotify.com/v1/me',{
