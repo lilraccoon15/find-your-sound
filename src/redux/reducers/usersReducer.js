@@ -12,9 +12,12 @@ const UserReducer = (state = initialState, action) => {
         name: action.payload.name,
         token: action.payload.token,
         email: action.payload.email,
+        picture: action.payload.picture,
       };
-      return {...state, user};
+      return  user;
     }
     default: return state;
   }
 }
+
+export default UserReducer;
