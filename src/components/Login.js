@@ -29,7 +29,7 @@ const Login = () => {
 
     useEffect(() => {
         if(data !== null ) {
-        dispatch(login(data.display_name, data.email, data.images, accessToken));
+        dispatch(login(data.display_name, data.email, data.images[1].url, accessToken));
         navigate('/profile');}
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [accessToken, data])
