@@ -19,7 +19,7 @@ const Navbar = () => {
     return(
         <>
         <div className="flex justify-between border-b border-purple pt-4 pb-4">
-            <span className="font-extrabold text-[1.5rem] ml-4 w-1/2 uppercase">Recotify</span>
+            <span className="font-extrabold text-[1.5rem] ml-4 w-1/2 uppercase"><NavLink to="/">Recotify</NavLink></span>
             <nav className="mr-4 w-1/3">
                 <ul className="flex justify-between font-bold text-spotify">
                     {user.email !== null ? (
