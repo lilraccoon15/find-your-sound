@@ -1,17 +1,21 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../redux/actions";
 
 const Navbar = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     }
     
     const logOut = () => {
-
+        dispatch(logout())
+        navigate("/");
     }
 
     const user = useSelector(state => state.user);
