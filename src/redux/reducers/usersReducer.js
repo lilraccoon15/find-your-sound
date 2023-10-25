@@ -16,6 +16,15 @@ const UserReducer = (state = initialState, action) => {
       };
       return  user;
     }
+    case 'LOGOUT' : {
+      const user = {
+        name: null,
+        token: null,
+        email: null,
+        picture: null,
+      };
+      return  user;
+    }
     default: return state;
   }
 }

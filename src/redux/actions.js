@@ -7,3 +7,7 @@ export const login = (name, email, picture, token) => ({
     picture,
   }
 });
+
+export const logout = () => ({
+  type: "LOGOUT",
+})

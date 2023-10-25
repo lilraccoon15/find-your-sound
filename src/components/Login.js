@@ -13,6 +13,7 @@ const Login = () => {
         +'&scope=' + encodeURIComponent('user-read-private user-read-email')
         +'&redirect_uri=' + encodeURIComponent('http://localhost:3000/login')
         +'&state=' + encodeURIComponent('JBNDzndqnzIUDfNZDbfez5qe4648');
+    console.log(url);
     useEffect(() => {
         if (accessToken){
       fetch('https://api.spotify.com/v1/me',{
@@ -28,9 +29,14 @@ const Login = () => {
     });
 
     useEffect(() => {
-        if(data !== null ) {
-        dispatch(login(data.display_name, data.email, data.images[1].url, accessToken));
-        navigate('/profile');}
+        if(data !== null) {
+            if (data.images && data.images[1] && data.images[1].url !== undefined) {
+                dispatch(login(data.display_name, data.email, data.images[1].url , accessToken));
+            } else {
+                dispatch(login(data.display_name, data.email, "no_image" , accessToken));
+            }
+            return navigate('/profile');
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [accessToken, data])
     
