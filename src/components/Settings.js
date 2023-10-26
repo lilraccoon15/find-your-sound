@@ -18,7 +18,7 @@ const Settings = () => {
     }, [user, navigate]);
     
     const [userName, setUserName] = useState(user.name);
-    const [userPicture, setPicture] = useState("no-image");
+    const [userPicture, setPicture] = useState(user.picture);
 
     const handleChange = (e) => {
         setUserName(e.target.value);
@@ -89,7 +89,7 @@ const Settings = () => {
                     </label>
                 </div>
                 <div className="md:w-1/3">
-                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-light leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" type="url" onChange={handleFileChange}/>
+                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-light leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" type="url" onChange={handleFileChange} value={userPicture}/>
                 </div>
             </div>
             <div className="flex flex-col items-center">
