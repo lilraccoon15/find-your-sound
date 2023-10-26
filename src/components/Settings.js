@@ -10,7 +10,7 @@ const Settings = () => {
     const navigate = useNavigate();
     
     const user = useSelector(state => state.user);
-    
+    console.log(user);
     useEffect(() => {
         if (user.email === null) {
             navigate("/login");
@@ -25,14 +25,7 @@ const Settings = () => {
     };
 
     const handleFileChange = (e) => {
-        const file = e.target.value;
-
-        if(file){
-            setPicture(file);
-        }
-        else {
-            setPicture("no-image");
-        }
+        setPicture(e.target.value);
     }
     
     const handleSubmit = async (e) => {
@@ -45,7 +38,6 @@ const Settings = () => {
         }
 
         dispatch(updateUser(updatedUser));
-        // dispatch(updateUser({name: userName, picture: userPicture}));
     }
 
     const deleteAccount = () => {

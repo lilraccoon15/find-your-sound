@@ -40,7 +40,7 @@ const ShowArtists = () => {
         // console.log(artist);
 
         dispatch({
-            type:'UPDATE_ARTISTS',
+            type:'ADD_ARTISTS',
             payload: {
                 ...user,
                 artists: selectedArtistsRef.current.map(artist => artist.name)

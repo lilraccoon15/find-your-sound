@@ -43,7 +43,7 @@ const UserReducer = (state = initialState, action) => {
         picture: action.payload.picture,
       }
     }
-    case 'UPDATE_ARTISTS' : {
+    case 'ADD_ARTISTS' : {
       return {
         ...state,
         artists: action.payload.artists
@@ -53,6 +53,12 @@ const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         artists: state.artists.filter(artist => artist !== action.payload)
+      }
+    }
+    case 'ADD_GENRES' : {
+      return {
+        ...state,
+        genres: action.payload.genres
       }
     }
     case 'DELETE_USER' : {
