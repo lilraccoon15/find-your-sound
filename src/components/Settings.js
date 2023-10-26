@@ -49,7 +49,7 @@ const Settings = () => {
     }
 
     const deleteAccount = () => {
-        dispatch(deleteUser(user.email));
+        dispatch(deleteUser(user.jwt));
         navigate("/");
     }
 
