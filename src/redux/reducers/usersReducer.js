@@ -49,6 +49,12 @@ const UserReducer = (state = initialState, action) => {
         artists: action.payload.artists
       }
     }
+    case 'DELETE_ARTIST' : {
+      return {
+        ...state,
+        artists: state.artists.filter(artist => artist !== action.payload)
+      }
+    }
     case 'DELETE_USER' : {
       return {
         name: null,

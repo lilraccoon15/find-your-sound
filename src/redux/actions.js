@@ -45,6 +45,54 @@ export const updateUser = (updatedUser) => {
   }
 }
 
+export const updateUserArtist = (artist) => {
+  return async (dispatch, getState) => {
+
+    const user = getState().user;
+    try {
+      const response = await fetch(`http://localhost:8000/artists/`, {
+        method: 'POST',
+        headers: {
+          "Authorization": user.jwt,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          artist: artist 
+        })
+      });
+      if (!response.ok) {
+        throw new Error('Erreur lors de la mise à jour de l\'utilisateur');
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const deleteUserArtist = (artist) => {
+  return async (dispatch, getState) => {
+    const user = getState().user;
+
+    try {
+      const response = await fetch(`http://localhost:8000/artists/`, {
+        method: 'DELETE',
+        headers: {
+          "Authorization": user.jwt,
+        },
+        
+      });
+      console.log(response);
+      if (!response.ok) {
+        throw new Error('Erreur lors de la mise à jour de l\'utilisateur');
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
 export const deleteUser = (jwt) => {
   return async (dispatch) => {
     try {

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import { useRef, useState } from "react";
-import { updateUser } from "../redux/actions";
+import { deleteUserArtist, updateUserArtist } from "../redux/actions";
 
 const ShowArtists = () => {
 
@@ -36,23 +36,36 @@ const ShowArtists = () => {
     const addArtist = (artist) => {
         selectedArtistsRef.current = [...selectedArtistsRef.current, artist];
 
+        dispatch(updateUserArtist(artist.name));
+        // console.log(artist);
+
         dispatch({
             type:'UPDATE_ARTISTS',
             payload: {
                 ...user,
                 artists: selectedArtistsRef.current.map(artist => artist.name)
             },
-        })
-        
+        })   
+    }
+
+    const deleteArtist = (artist) => {
+
+        dispatch(deleteUserArtist(artist));
+
+        dispatch({
+            type:'DELETE_ARTIST',
+            payload: artist
+        })   
+    
     }
 
     return(
         <>
         <article className="mr-[200px] ml-[200px] mt-[50px]">
-            <table className="w-full">
+            <table className="md:w-2/3 m-auto mt-10 font-bold">
                 <thead>
                     <tr className="border-b border-purple font-bold">
-                        <td>Artiste</td>
+                        <td>Artistes</td>
                         <td>Retirer</td>
                     </tr>
                 </thead>
@@ -61,7 +74,7 @@ const ShowArtists = () => {
                         {user.artists.map((artist, index) => (
                             <tr key={index}>
                                 <td>{artist}</td>
-                                {/* Ajoutez ici la colonne pour "Retirer" si nécessaire */}
+                                <td className="cursor-pointer" onClick={() => deleteArtist(artist)}>Retirer</td>
                             </tr>
                         ))}
                     </tbody>
