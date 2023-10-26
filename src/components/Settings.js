@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../redux/actions";
@@ -10,7 +10,12 @@ const Settings = () => {
     const navigate = useNavigate();
     
     const user = useSelector(state => state.user);
-    console.log('user  =', user)
+    
+    useEffect(() => {
+        if (user.email === null) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
     
     const [userName, setUserName] = useState(user.name);
     const [userPicture, setPicture] = useState("no-image");

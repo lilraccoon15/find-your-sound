@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ShowRecs from "./ShowRecs";
 import ShowArtists from "./ShowArtists";
 import ShowGenres from "./ShowGenres";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
     const [showRecs, setShowRecs] = useState(true);
     const [showArtists, setShowArtists] = useState(false);
     const [showGenres, setShowGenres] = useState(false);
+
+    const navigate = useNavigate();
+
+    const user = useSelector(state => state.user) ;
+
+    useEffect(() => {
+        if (user.email === null) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
 
     const toggleRecs = () => {
         setShowRecs(true);
@@ -27,8 +38,6 @@ const Profile = () => {
         setShowArtists(false);
     }
 
-
-    const user = useSelector(state => state.user) ;
     return(
         <>
         <article className="mr-[200px] ml-[200px] mt-[50px] flex">
