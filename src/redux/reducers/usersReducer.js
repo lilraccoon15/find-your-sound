@@ -41,6 +41,12 @@ const UserReducer = (state = initialState, action) => {
         picture: action.payload.picture
       }
     }
+    case 'UPDATE_ARTISTS' : {
+      return {
+        ...state,
+        artists: action.payload.artists
+      }
+    }
     case 'DELETE_USER' : {
       return {
         name: null,

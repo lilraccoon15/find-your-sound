@@ -20,7 +20,7 @@ const Layout = () => {
             .then(response => response.json())
             .then(data => {
                 if(data.ok){
-                    return alert('Vous êtes connecté')
+                    // return alert('Vous êtes connecté')
                 }
                 fetch('http://localhost:8000/users', {
                     method: 'POST',
