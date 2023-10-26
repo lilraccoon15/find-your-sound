@@ -1,49 +1,55 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { updateUser } from "../redux/actions";
-import { deleteUser } from "../redux/actions";
+import { logout, updateUser } from "../redux/actions";
 
 const Settings = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
     const user = useSelector(state => state.user);
-    console.log(user);
-    useEffect(() => {
-        if (user.email === null) {
-            navigate("/login");
-        }
-    }, [user, navigate]);
-    
     const [userName, setUserName] = useState(user.name);
     const [userPicture, setPicture] = useState(user.picture);
+    const [isSubmit, setIsSubmit] = useState(false);
+    const [isDelete, setIsDelete] = useState(false);
+    useEffect(() => {
+        if(isSubmit){
+            fetch('http://localhost:8000/users/', {
+                method: 'PUT',
+                headers: {
+                    "Authorization": user.jwt,
+                    "Content-Type": "application/json",
+                    },
+                body: JSON.stringify({
+                    name: userName,
+                    picture : userPicture
+                })
+            })
+        }
+    },[isSubmit, user.jwt, userName, userPicture]);
 
-    const handleChange = (e) => {
-        setUserName(e.target.value);
-    };
-
-    const handleFileChange = (e) => {
-        setPicture(e.target.value);
-    }
+    useEffect(() => {
+        if(isDelete){ 
+            fetch(`http://localhost:8000/users/`, {
+                method: 'DELETE',
+                headers: {
+                    "Authorization": user.jwt,
+                },
+            });
+            dispatch(logout());
+            navigate('/')
+        }
+    },[dispatch, isDelete, navigate, user.jwt])
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const updatedUser = {
-            ...user,
-            name: userName,
-            picture: userPicture
-        }
-
-        dispatch(updateUser(updatedUser));
-    }
+        setIsSubmit(true);
+        dispatch(updateUser(userName, userPicture));
+    };
 
     const deleteAccount = () => {
-        dispatch(deleteUser(user.jwt));
-        navigate("/");
-    }
+        setIsDelete(true);
+       
+    };
 
     return(
         <>
@@ -57,7 +63,7 @@ const Settings = () => {
                     </label>
                 </div>
                 <div className="md:w-1/3">
-                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-ligth leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" id="username" type="text" value={userName} onChange={handleChange}/>
+                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-ligth leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" id="username" type="text" value={userName} onChange={e => setUserName(e.target.value)}/>
                 </div>
             </div>
             {
@@ -81,7 +87,7 @@ const Settings = () => {
                     </label>
                 </div>
                 <div className="md:w-1/3">
-                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-light leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" type="url" onChange={handleFileChange} value={userPicture}/>
+                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-light leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" type="url" onChange={e => setPicture(e.target.value)} value={userPicture}/>
                 </div>
             </div>
             <div className="flex flex-col items-center">

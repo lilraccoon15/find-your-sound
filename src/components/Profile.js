@@ -42,7 +42,7 @@ const Profile = () => {
         <>
         <article className="mr-[200px] ml-[200px] mt-[50px] flex">
             <div className="w-[150px] h-[150px] rounded-full overflow-hidden">
-                <img className="w-full h-full object-cover"src={user.picture} alt="user picture"></img>
+                <img className="w-full h-full object-cover"src={user.picture} alt="user"></img>
             </div>
             <div className="ml-[50px]">
                 <h3 className="text-[2rem] mt-12 font-bold">{user.name}</h3>

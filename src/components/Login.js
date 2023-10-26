@@ -13,7 +13,6 @@ const Login = () => {
         +'&scope=' + encodeURIComponent('user-read-private user-read-email')
         +'&redirect_uri=' + encodeURIComponent('http://localhost:3000/login')
         +'&state=' + encodeURIComponent('JBNDzndqnzIUDfNZDbfez5qe4648');
-    console.log(url);
     useEffect(() => {
         if (accessToken){
       fetch('https://api.spotify.com/v1/me',{
@@ -49,19 +48,38 @@ const Login = () => {
                     }
                     alert('Vous êtes connecté');
                     return navigate('/profile');
-                }
-                fetch('http://localhost:8000/users', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json",
-                      },
-                    body: JSON.stringify({
-                        email: localData.email,
-                        name: localData.name,
-                        picture: localData.picture
+                } 
+                console.log(localData)
+                if (localData.images && localData.images[1] && localData.images[1].url !== undefined){
+                    fetch('http://localhost:8000/users', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name: localData.display_name,
+                            email: localData.email,
+                            picture: localData.images[1].url
+                        })
                     })
-                })
-                return alert("Compte créé, veuillez vous connecter");
+                    alert("Compte créé, veuillez vous connecter");
+                    return navigate('/login');
+                } else {
+                    fetch('http://localhost:8000/users', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name: localData.display_name,
+                            email: localData.email,
+                            picture: 'no_image'
+                        })
+                    })
+                    alert("Compte créé, veuillez vous connecter");
+                    return navigate('/login');
+                }
+                
             })
             .catch(err => console.error(err))
         }

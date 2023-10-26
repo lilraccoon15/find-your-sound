@@ -3,9 +3,9 @@ const initialState = {
   token: null,
   email: null,
   picture: null,
-  artists: null,
-  genres: null,
-  recommendations: null,
+  artists: [],
+  genres: [],
+  recommendations: [],
   jwt: null
 }
 
@@ -30,9 +30,9 @@ const UserReducer = (state = initialState, action) => {
         token: null,
         email: null,
         picture: null,
-        artists: null,
-        genres: null,
-        recommendations: null
+        artists: [],
+        genres: [],
+        recommendations: []
       };
       return  user;
     }
@@ -43,17 +43,21 @@ const UserReducer = (state = initialState, action) => {
         picture: action.payload.picture,
       }
     }
-    case 'ADD_ARTISTS' : {
-      return {
-        ...state,
-        artists: action.payload.artists
-      }
+    case 'ADD_ARTIST' : {
+      const artists = [...state.artists];
+      const idx = artists.findIndex(artist => JSON.stringify(artist) === JSON.stringify({name: action.payload.name, id: action.payload.id}));
+      console.log(idx);
+      if(idx >= 0){
+        return state;
+      } 
+      const newArtists = [...state.artists, {name: action.payload.name, id: action.payload.id}];
+      return { ...state, artists: newArtists};
+      
     }
     case 'DELETE_ARTIST' : {
-      return {
-        ...state,
-        artists: state.artists.filter(artist => artist !== action.payload)
-      }
+      let newArtists = [...state.artists];
+      newArtists.splice(action.payload.id, 1);
+      return { ...state, artists: newArtists};
     }
     case 'ADD_GENRES' : {
       return {
@@ -61,17 +65,7 @@ const UserReducer = (state = initialState, action) => {
         genres: action.payload.genres
       }
     }
-    case 'DELETE_USER' : {
-      return {
-        name: null,
-        token: null,
-        email: null,
-        picture: null,
-        artists: null,
-        genres: null,
-        recommendations: null
-      }
-    }
+
     default: return state;
   }
 }
