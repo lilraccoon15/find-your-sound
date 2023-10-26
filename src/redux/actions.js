@@ -45,17 +45,14 @@ export const updateUser = (updatedUser) => {
   }
 }
 
-export const deleteUser = (email) => {
+export const deleteUser = (jwt) => {
   return async (dispatch) => {
     try {
       const response = await fetch(`http://localhost:8000/users/`, {
         method: 'DELETE',
         headers: {
-            "Content-Type": "application/json",
+          "Authorization": jwt,
           },
-        body: JSON.stringify({
-            email: email
-        })
       });
 
       if (!response.ok) {
