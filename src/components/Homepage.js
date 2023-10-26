@@ -1,5 +1,10 @@
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const Homepage = () => {
+
+    const user = useSelector(state => state.user);
+
     return(
         <>
             <article className="flex flex-col items-center">
@@ -17,7 +22,11 @@ const Homepage = () => {
                     <h2 className="font-extrabold text-[7rem] text-purple -translate-x-32">Etape 3</h2>
                     <p className="text-[2rem] mt-12 w-[33rem] font-bold">Découvres nos recommandations</p>
                 </div>
-                <button className="bg-spotify rounded-[36px] my-32 text-purple-dark py-4 px-16 text-2xl font-bold active:bg-purple active:text-white border border-spotify" >Se connecter</button>
+                
+                { user.email === null && (
+                <NavLink to ="/login"><button className="bg-spotify rounded-[36px] my-32 text-purple-dark py-4 px-16 text-2xl font-bold active:bg-purple active:text-white border border-spotify" >Se connecter</button></NavLink>
+                )}
+
             </article>
         </>
     )

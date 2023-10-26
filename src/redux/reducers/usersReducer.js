@@ -3,6 +3,9 @@ const initialState = {
   token: null,
   email: null,
   picture: null,
+  artists: null,
+  genres: null,
+  recommendations: null
 }
 
 const UserReducer = (state = initialState, action) => {
@@ -13,6 +16,9 @@ const UserReducer = (state = initialState, action) => {
         token: action.payload.token,
         email: action.payload.email,
         picture: action.payload.picture,
+        artists: null,
+        genres: null,
+        recommendations: null
       };
       return  user;
     }
@@ -22,8 +28,29 @@ const UserReducer = (state = initialState, action) => {
         token: null,
         email: null,
         picture: null,
+        artists: null,
+        genres: null,
+        recommendations: null
       };
       return  user;
+    }
+    case 'UPDATE_USER' : {
+      return {
+        ...state,
+        name: action.payload.name,
+        picture: action.payload.picture
+      }
+    }
+    case 'DELETE_USER' : {
+      return {
+        name: null,
+        token: null,
+        email: null,
+        picture: null,
+        artists: null,
+        genres: null,
+        recommendations: null
+      }
     }
     default: return state;
   }
