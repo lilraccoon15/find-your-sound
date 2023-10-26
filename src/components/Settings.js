@@ -25,7 +25,7 @@ const Settings = () => {
     };
 
     const handleFileChange = (e) => {
-        const file = e.target.files[0];
+        const file = e.target.value;
 
         if(file){
             setPicture(file);
@@ -61,7 +61,7 @@ const Settings = () => {
             <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                     <label className="block font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="username">
-                        Nom d'utilisateur
+                        Nom d'utilisateur:
                     </label>
                 </div>
                 <div className="md:w-1/3">
@@ -73,11 +73,11 @@ const Settings = () => {
                     <div className="md:flex md:items-center mb-6">
                         <div className="md:w-1/3">
                             <label className="block font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="actual-picture">
-                                Photo Actuelle
+                                Photo Actuelle:
                             </label>
                         </div>
                         <div className="md:w-1/3">
-                            <img className="w-[50px} h-[50px]" src={user.picture} alt="user picture"></img>
+                            <img className="w-[50px} h-[50px]" src={user.picture} alt="your pp"></img>
                         </div>
                     </div>
                 )
@@ -85,11 +85,11 @@ const Settings = () => {
             <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                     <label className="block font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="new-picture">
-                        Photo
+                        Photo URL:
                     </label>
                 </div>
                 <div className="md:w-1/3">
-                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-light leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" type="file" onChange={handleFileChange}/>
+                    <input className="bg-purple-dark appearance-none border-2 border-purple rounded w-full py-2 px-4 text-light leading-tight focus:outline-none focus:bg-purple-dark focus:border-spotify" type="url" onChange={handleFileChange}/>
                 </div>
             </div>
             <div className="flex flex-col items-center">

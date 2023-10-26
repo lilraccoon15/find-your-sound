@@ -1,10 +1,14 @@
-export const login = (name, email, picture, token) => ({
+export const login = (name, email, picture, token, artists, genres, recommendations, jwt) => ({
   type: 'LOGIN',
   payload: {
     name,
     email,
-    token,
     picture,
+    token,
+    artists,
+    genres,
+    recommendations,
+    jwt
   }
 });
 
@@ -14,14 +18,15 @@ export const logout = () => ({
 
 export const updateUser = (updatedUser) => {
   return async (dispatch) => {
+    console.log(updatedUser.jwt)
     try {
       const response = await fetch('http://localhost:8000/users/', {
           method: 'PUT',
           headers: {
+              "Authorization": updatedUser.jwt,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: updatedUser.email,//identifier via token
               name: updatedUser.name,
               picture : updatedUser.picture
           })

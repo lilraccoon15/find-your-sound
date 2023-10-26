@@ -5,7 +5,8 @@ const initialState = {
   picture: null,
   artists: null,
   genres: null,
-  recommendations: null
+  recommendations: null,
+  jwt: null
 }
 
 const UserReducer = (state = initialState, action) => {
@@ -16,9 +17,10 @@ const UserReducer = (state = initialState, action) => {
         token: action.payload.token,
         email: action.payload.email,
         picture: action.payload.picture,
-        artists: null,
-        genres: null,
-        recommendations: null
+        artists: action.payload.artists,
+        genres: action.payload.genres,
+        recommendations: action.payload.recommendations,
+        jwt: action.payload.jwt
       };
       return  user;
     }
@@ -38,7 +40,7 @@ const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         name: action.payload.name,
-        picture: action.payload.picture
+        picture: action.payload.picture,
       }
     }
     case 'DELETE_USER' : {
