@@ -36,3 +36,13 @@ export const deleteArtist = (id) => ({
   type: 'DELETE_ARTIST',
   payload: {id}
 })
+
+export const addGenre = (genre) => ({
+  type: 'ADD_GENRE',
+  payload: {genre}
+})
+
+export const deleteGenre = (genre) => ({
+  type: 'DELETE_GENRE',
+  payload: {genre}
+})

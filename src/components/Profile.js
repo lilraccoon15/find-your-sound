@@ -51,10 +51,10 @@ const Profile = () => {
         </article>
 
         <article className="mr-[200px] ml-[200px] mt-[50px]">
-            <ul className="border-b border-purple flex justify-between">
-                <li onClick={toggleRecs} className="font-bold cursor-pointer">Recommandations</li>
-                <li onClick={toggleArtists} className="font-bold cursor-pointer">Mes artistes</li>
-                <li onClick={toggleGenres} className="font-bold cursor-pointer">Mes genres</li>
+            <ul className="flex justify-between">
+                <li onClick={toggleRecs} className="font-bold cursor-pointer border-2 text-white border-spotify rounded-[36px] my-5 ml-5 text-purple-dark py-4 px-10 text-1xl font-bold">Recommandations</li>
+                <li onClick={toggleArtists} className="font-bold cursor-pointer border-2 text-white border-purple rounded-[36px] my-5 ml-5 text-purple-dark py-4 px-10 text-1xl font-bold">Mes artistes</li>
+                <li onClick={toggleGenres} className="font-bold cursor-pointer border-2 text-white border-purple rounded-[36px] my-5 ml-5 text-purple-dark py-4 px-10 text-1xl font-bold">Mes genres</li>
             </ul>
         </article>
 
