@@ -28,7 +28,9 @@ const ShowArtists = () => {
 
     const handleChange = async (e) => {
         const artistValue = e.target.value;
-        setSearch(artistValue);
+        if (artistValue.length >= 5) {
+            setSearch(artistValue);
+        }
     }
 
     const handleAdd = (artist) => {
