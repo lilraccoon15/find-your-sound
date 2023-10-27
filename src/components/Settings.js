@@ -99,7 +99,7 @@ const Settings = () => {
             </div>
             <div className="flex flex-col items-center">
                 <button className="bg-spotify rounded-[36px] text-purple-dark py-4 px-16 text-2xl font-bold active:bg-purple active:text-white flex" type="submit">Mettre à jour</button>
-                <div onClick={deleteAccount}className="bg-purple rounded-[36px] my-4 text-white py-4 px-16 text-2xl font-bold active:bg-spotify active:text-purple-dark flex" >Supprimer mon compte</div>
+                <div onClick={deleteAccount} className="cursor-pointer bg-purple rounded-[36px] my-4 text-white py-4 px-16 text-2xl font-bold active:bg-spotify active:text-purple-dark flex" >Supprimer mon compte</div>
             </div>
             </form>
         </article>

@@ -46,3 +46,13 @@ export const addRecommendation = (name, artist, album, url) => ({
     url
   }
 })
+
+export const addGenre = (genre) => ({
+  type: 'ADD_GENRE',
+  payload: {genre}
+})
+
+export const deleteGenre = (genre) => ({
+  type: 'DELETE_GENRE',
+  payload: {genre}
+})

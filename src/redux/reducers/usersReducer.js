@@ -52,18 +52,25 @@ const UserReducer = (state = initialState, action) => {
       } 
       const newArtists = [...state.artists, {name: action.payload.name, id: action.payload.id}];
       return { ...state, artists: newArtists};
-      
     }
     case 'DELETE_ARTIST' : {
       let newArtists = [...state.artists];
       newArtists.splice(action.payload.id, 1);
       return { ...state, artists: newArtists};
     }
-    case 'ADD_GENRES' : {
-      return {
-        ...state,
-        genres: action.payload.genres
-      }
+    case 'ADD_GENRE' : {
+      const genres = [...state.genres];
+      const idx = genres.findIndex(genre => JSON.stringify(genre) === JSON.stringify(action.payload.genre));
+      if(idx >= 0){
+        return state;
+      } 
+      const newGenres = [...state.genres, action.payload.genre];
+      return { ...state, genres: newGenres};
+    }
+    case 'DELETE_GENRE' : {
+      let newGenres = [...state.genres];
+      newGenres.splice(action.payload.genre, 1);
+      return { ...state, genres: newGenres};
     }
 
     case 'ADD_RECO': {
