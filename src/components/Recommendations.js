@@ -44,7 +44,7 @@ const Recommendations = () => {
     
     useEffect(() => {
         if(isGenre){
-            fetch('https://api.spotify.com/v1/recommendations?' + new URLSearchParams({seed_artists: user.genres.toString()}), {
+            fetch('https://api.spotify.com/v1/recommendations?' + new URLSearchParams({seed_genres: user.genres.toString()}), {
                 headers: {
                     'Authorization': 'Bearer ' + user.token
                 }
@@ -63,7 +63,6 @@ const Recommendations = () => {
     };
 
     useEffect(() => {
-        console.log(selectedReco);
         if(isAdd){
             fetch(`http://localhost:8000/recommendations/`, {
                 method: 'POST',
