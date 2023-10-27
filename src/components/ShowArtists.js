@@ -63,7 +63,6 @@ const ShowArtists = () => {
 
     useEffect(() => {
         if(isDelete){
-            console.log(artist)
             fetch(`http://localhost:8000/artists/`, {
                 method: 'DELETE',
                 headers: {

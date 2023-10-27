@@ -83,6 +83,11 @@ const UserReducer = (state = initialState, action) => {
       const newRecommendations = [...state.recommendations, {name: action.payload.name, artist: action.payload.artist, album: action.payload.album, url: action.payload.url}];
       return { ...state, recommendations: newRecommendations};
     }
+    case 'DELETE_RECO' : {
+      let newRecos = [...state.recommendations];
+      newRecos.splice(action.payload.index, 1);
+      return { ...state, recommendations: newRecos};
+    }
 
     default: return state;
   }

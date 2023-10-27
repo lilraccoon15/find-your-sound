@@ -56,3 +56,8 @@ export const deleteGenre = (genre) => ({
   type: 'DELETE_GENRE',
   payload: {genre}
 })
+
+export const deleteRecommendation = (index) => ({
+  type: 'DELETE_RECO',
+  payload: {index}
+})
