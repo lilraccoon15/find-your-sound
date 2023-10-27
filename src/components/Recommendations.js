@@ -81,8 +81,11 @@ const Recommendations = () => {
 
     return(
         <>
-            {!isArtist && (<div className="flex w-screen justify-center">
+            {!isArtist && user.artists[0] && (<div className="flex w-screen justify-center">
                 <button className="bg-purple-dark rounded-[36px] border border-spotify my-32 text-spotify py-4 px-16 text-2xl font-bold active:bg-purple active:text-white flex" onClick={() => setIsArtist(true)}>Artistes</button>
+            </div>)}
+            {!isGenre && user.genres[0] && (<div className="flex w-screen justify-center">
+                <button className="bg-purple-dark rounded-[36px] border border-spotify my-32 text-spotify py-4 px-16 text-2xl font-bold active:bg-purple active:text-white flex" onClick={() => setIsGenre(true)}>Genres</button>
             </div>)}
             {recommendations !== null && (
                 <>
