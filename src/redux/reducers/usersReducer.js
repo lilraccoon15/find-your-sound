@@ -66,6 +66,17 @@ const UserReducer = (state = initialState, action) => {
       }
     }
 
+    case 'ADD_RECO': {
+      const recommendations = [...state.recommendations];
+      const idx = recommendations.findIndex(reco => JSON.stringify(reco) === JSON.stringify({name: action.payload.name, artist: action.payload.artist, album: action.payload.album, url: action.payload.url}));
+      console.log(idx);
+      if(idx >= 0){
+        return state;
+      } 
+      const newRecommendations = [...state.recommendations, {name: action.payload.name, artist: action.payload.artist, album: action.payload.album, url: action.payload.url}];
+      return { ...state, recommendations: newRecommendations};
+    }
+
     default: return state;
   }
 }

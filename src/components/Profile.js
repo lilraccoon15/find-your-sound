@@ -46,7 +46,7 @@ const Profile = () => {
             </div>
             <div className="ml-[50px]">
                 <h3 className="text-[2rem] mt-12 font-bold">{user.name}</h3>
-                <p className="italic font-light text-1xl">artistes favoris - genres favoris</p>
+                <p className="italic font-light text-1xl">{user.artists.length} artistes favoris - {user.genres.length} genres favoris</p>
             </div>
         </article>
 

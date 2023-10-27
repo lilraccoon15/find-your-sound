@@ -36,3 +36,13 @@ export const deleteArtist = (id) => ({
   type: 'DELETE_ARTIST',
   payload: {id}
 })
+
+export const addRecommendation = (name, artist, album, url) => ({
+  type: 'ADD_RECO',
+  payload: {
+    name,
+    artist,
+    album,
+    url
+  }
+})

@@ -11,6 +11,13 @@ const Settings = () => {
     const [userPicture, setPicture] = useState(user.picture);
     const [isSubmit, setIsSubmit] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
+    
+    useEffect(() => {
+        if (user.email === null) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
+
     useEffect(() => {
         if(isSubmit){
             fetch('http://localhost:8000/users/', {
