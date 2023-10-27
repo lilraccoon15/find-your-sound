@@ -10,44 +10,8 @@ const Recommendations = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const [isArtist, setIsArtist] = useState(false);
-    const [recommendations, setRecommendations] = useState([
-        {
-            name: 'Zouk la nuit',
-            album: {name:'La pétite dé la mour'},
-            artists: [{name: 'Lé froteur tourmenté'}],
-            uri: 'http://spotify.com'
-        },
-        {
-            name: 'Zouk la nuit',
-            album: {name:'La pétite dé la mour'},
-            artists: [{name: 'Lé froteur tourmenté'}],
-            uri: 'http://spotify.com'
-        },
-        {
-            name: 'Zouk la nuit',
-            album: {name:'La pétite dé la mour'},
-            artists: [{name: 'Lé froteur tourmenté'}],
-            uri: 'http://spotify.com'
-        },
-        {
-            name: 'Zouk la nuit',
-            album: {name:'La pétite dé la mour'},
-            artists: [{name: 'Lé froteur tourmenté'}],
-            uri: 'http://spotify.com'
-        },
-        {
-            name: 'Zouk la nuit',
-            album: {name:'La pétite dé la mour'},
-            artists: [{name: 'Lé froteur tourmenté'}],
-            uri: 'http://spotify.com'
-        },
-        {
-            name: 'Zouk la nuit',
-            album: {name:'La pétite dé la mour'},
-            artists: [{name: 'Lé froteur tourmenté'}],
-            uri: 'http://spotify.com'
-        },
-    ]);
+    const [isGenre, setIsGenre] = useState(false);
+    const [recommendations, setRecommendations] = useState(null);
     const [selectedReco, setSelectedReco] = useState(null);
     const [isAdd, setIsAdd] = useState(false);
     const artistsParams = useMemo(() => {
@@ -64,19 +28,33 @@ const Recommendations = () => {
         }
     }, [user, navigate]);
 
-    // useEffect(() => {
-    //     if(isArtist){
-    //         fetch('https://api.spotify.com/v1/recommendations?' + new URLSearchParams({seed_artists: artistsParams.toString()}), {
-    //             headers: {
-    //                 'Authorization': 'Bearer ' + user.token
-    //             }
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => setReco(data.tracks))
-    //         .catch(err => console.error(err.message))
-    //         setIsArtist(false);
-    //     }
-    // }, [artistsParams, isArtist, user.token]);
+    useEffect(() => {
+        if(isArtist){
+            fetch('https://api.spotify.com/v1/recommendations?' + new URLSearchParams({seed_artists: artistsParams.toString()}), {
+                headers: {
+                    'Authorization': 'Bearer ' + user.token
+                }
+            })
+            .then(response => response.json())
+            .then(data => setRecommendations(data.tracks))
+            .catch(err => console.error(err.message))
+            setIsArtist(false);
+        }
+    }, [artistsParams, isArtist, user.token]);
+    
+    useEffect(() => {
+        if(isGenre){
+            fetch('https://api.spotify.com/v1/recommendations?' + new URLSearchParams({seed_artists: user.genres.toString()}), {
+                headers: {
+                    'Authorization': 'Bearer ' + user.token
+                }
+            })
+            .then(response => response.json())
+            .then(data => setRecommendations(data.tracks))
+            .catch(err => console.error(err.message))
+            setIsGenre(false);
+        }
+    }, [artistsParams, isGenre, user.genres, user.token]);
 
     const handleAdd = (track) => {
         setSelectedReco(track);
