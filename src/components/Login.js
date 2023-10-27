@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { login } from "../redux/actions";
+import { SpotifyLogo } from "@phosphor-icons/react";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -49,7 +50,6 @@ const Login = () => {
                     alert('Vous êtes connecté');
                     return navigate('/profile');
                 } 
-                console.log(localData)
                 if (localData.images && localData.images[1] && localData.images[1].url !== undefined){
                     fetch('http://localhost:8000/users', {
                         method: 'POST',
@@ -90,7 +90,7 @@ const Login = () => {
         <>
             <article className="flex flex-col items-center">
                 <h3 className="text-[2rem] mt-12 font-bold">J'ai un compte Spotify</h3>
-                <a href={url} className="bg-spotify rounded-[36px] my-32 text-purple-dark py-4 px-16 text-2xl font-bold active:bg-purple active:text-white flex" >Se connecter via Spotify</a>
+                <a href={url} className="items-center bg-spotify rounded-[36px] my-32 text-purple-dark py-4 px-16 text-2xl font-bold active:bg-purple active:text-white flex" >Se connecter via Spotify <SpotifyLogo size={50}/></a>
 
                 <p className="italic font-light my-8 text-3xl">Tu n'as pas de compte Spotify ? <a href="https://www.spotify.com/fr/signup" className="text-purple font-bold active:text-spotify">Créez-en un !</a></p>
             </article>

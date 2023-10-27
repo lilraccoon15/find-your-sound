@@ -10,8 +10,6 @@ const ShowRecs = () => {
     const [recommendation, setRecommendation] = useState(null);
     const dispatch = useDispatch();
 
-    console.log(user);
-
     const handleDelete = (recommendation, index) => {
         setRecommendation(recommendation);
         dispatch(deleteRecommendation(index));

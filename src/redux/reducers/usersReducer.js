@@ -46,7 +46,6 @@ const UserReducer = (state = initialState, action) => {
     case 'ADD_ARTIST' : {
       const artists = [...state.artists];
       const idx = artists.findIndex(artist => JSON.stringify(artist) === JSON.stringify({name: action.payload.name, id: action.payload.id}));
-      console.log(idx);
       if(idx >= 0){
         return state;
       } 
@@ -76,7 +75,6 @@ const UserReducer = (state = initialState, action) => {
     case 'ADD_RECO': {
       const recommendations = [...state.recommendations];
       const idx = recommendations.findIndex(reco => JSON.stringify(reco) === JSON.stringify({name: action.payload.name, artist: action.payload.artist, album: action.payload.album, url: action.payload.url}));
-      console.log(idx);
       if(idx >= 0){
         return state;
       } 

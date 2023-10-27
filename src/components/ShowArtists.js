@@ -11,7 +11,6 @@ const ShowArtists = () => {
     const [isDelete, setIsDelete] = useState(false);
     const [search, setSearch] = useState("");
     const dispatch = useDispatch();
-    console.log(artist);
 
     useEffect(() => {
         if(search[0]){

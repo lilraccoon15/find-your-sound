@@ -10,7 +10,6 @@ const ShowGenres = () => {
     const [isAdd, setIsAdd] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const dispatch = useDispatch();
-    // console.log(user)
     
     // useEffect(() => {
     //     fetch('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
