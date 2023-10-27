@@ -1,5 +1,5 @@
 
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import UserReducer from './reducers/usersReducer';
 import localStorageMiddleware from './localStorageMiddleware';
 

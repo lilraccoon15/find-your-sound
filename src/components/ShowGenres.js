@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { addGenre, deleteGenre, } from "../redux/actions";
-import axios from 'axios';
 
 const ShowGenres = () => {
 
@@ -14,21 +13,14 @@ const ShowGenres = () => {
     // console.log(user)
     
     useEffect(() => {
-        const getGenres = async () => {
-
-            try {
-                const response = await axios.get('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
+        fetch('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
                 headers: {
                     'Authorization': 'Bearer ' + user.token,
                 },
-            });
-                setGenres(response.data.genres);
-
-            } catch (error) {
-                console.error('Erreur lors de la requête:', error);
-            } 
-        }
-        getGenres();
+            })
+            .then(response => response.json())
+            .then( data => setGenres(data.genres))
+            .catch (error => console.error('Erreur lors de la requête:', error))
     }, [user.token]);
 
     const handleAdd = (genre) => {
